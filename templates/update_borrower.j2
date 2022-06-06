@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Update</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='app.css') }}">
+    </head>
+    <body>
+        <header>
+            <div class ="container">
+                <nav>
+                    <ul class = "main">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/students.html">Students</a></li>
+                    <li><a href="/authors.html">Authors</a></li>
+                    <li><a href="/publishers.html">Publishers</a></li>
+                    <li><a href="/books.html">Books</a></li>
+                    <li><a href="/borrowers.html">Borrow Reports</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+<h1>Edit Borrower Data</h1>
+<br>
+<div id="insert">
+    <form method="POST" id= "update borrower">
+        <legend><strong>Update Borrower </strong></legend>
+          <fieldset class="fields">
+                <label for='Student ID'> Student ID </label>
+                  <input type="text" id = 'student' name= 'student' value ={{student}} required><br><br>
+                <label for='Book ID'> Book ID </label>    
+                  <input type="text" id = 'book' name= 'book' value ={{book}} required><br><br>
+                <label for='Borrow Date'> Borrow Date </label>
+                  <input type="date" id = 'borrow' name= 'borrow' value ={{borrow}} required><br><br>
+                <label for='due date'> Due Date </label>    
+                  <input type="date" id = 'due' name= 'due' value ={{due}} required><br><br>
+                <label for='Due Amount'> Due Amount </label>
+                  <input type="text" id = 'amount' name= 'amount' value ={{amount}} required><br><br>
+                <label for='Status'> Book Status </label>    
+                  <select name = "status">
+                    <option value='Returned'> Returned </option>
+                    <option value='Borrowed'> Borrowed </option>
+                  </select>
+      </fieldset>
+          <input class="btn" type="submit" name="edit_borrower" value="Edit Borrower">
+          <input class="btn" type="button" value="Cancel" onClick="location.href='/borrowers.html'">
+	</form>
+</div>
+
+
+    </body>
+</html>

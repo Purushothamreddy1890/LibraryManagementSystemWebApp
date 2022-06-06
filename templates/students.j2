@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="urf-8">
+        <title>Project Step 3 draft</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='app.css') }}">
+    </head>
+    <body>
+        <header>
+            <div class ="container">
+                <nav>
+                    <ul class = "main">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="students.html">Students</a></li>
+                    <li><a href="authors.html">Authors</a></li>
+                    <li><a href="publishers.html">Publishers</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="borrowers.html">Borrow Reports</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+<h1>Students</h1>
+<p>Browse Students Database</p>
+
+<div class="input-group">
+<form method="POST">
+	<input type="text" placeholder="Search Student ID" name="student_id">
+    <input type="submit" class="search-button" name="search" value="Search"> 
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in results%}
+        <tr>
+            <td>{{row.student_id}}</td>
+            <td>{{row.first_name}}</td>
+            <td>{{row.last_name}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.phone_no}}</td>
+            <td>{{row.address}}</td>
+            <td><button onclick="location.href='/update_student/{{row.student_id}}'" type="button">Edit</button></td>
+            <td><button onclick="location.href= '/delete_student/{{row.student_id}}'" type="button">Delete</button></td>
+        </tr> 
+        {% endfor %}        
+    </tbody>
+</table>
+
+    <br>
+<div id="insert"> <!-- insert -->
+    <form method="POST" id="insert">
+        <legend><strong>Add Students </strong></legend>
+          <fieldset class="fields">
+            <label> First Name</label> 
+            <input type="text" name="fname">
+            <label> Last Name</label> 
+            <input type="text" name="lname">
+            <label> Email </label>
+            <input type="text" name="email">
+            <label> Phone number </label>
+            <input type="text" name = "phone_number">
+            <label> Address </label>
+            <input type="text" name = "address">
+      </fieldset>
+          <input class="button" type="submit" name="add" value="Add Students">
+    </form> 
+</div>
+
+    </body>
+</html>

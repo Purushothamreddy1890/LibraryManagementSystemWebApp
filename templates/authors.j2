@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="urf-8">
+        <title>Project Step 3 draft</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='app.css') }}">
+        <script type="text/javascript" href = "{{ url_for('static', filename='script.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <div class ="container">
+                <nav>
+                    <ul class = "main">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/students.html">Students</a></li>
+                    <li><a href="/authors.html">Authors</a></li>
+                    <li><a href="/publishers.html">Publishers</a></li>
+                    <li><a href="/books.html">Books</a></li>
+                    <li><a href="/borrowers.html">Borrow Reports</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+<h1>Authors</h1>
+<p>Browse Authors Database</p>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in results%}
+        <tr>
+            <td>{{ row.author_id }}</td>
+            <td>{{ row.author_firstname }}</td>
+            <td>{{ row.author_lastname }}</td>
+            <td><button onclick="location.href='/update_author/{{row.author_id}}'" type="button">Edit</button></td>
+            <td><button onclick="location.href= '/delete_author/{{row.author_id}}'" type="button">Delete</button></td>
+        </tr> 
+        {% endfor %}       
+    </tbody>
+</table>
+
+    <br>
+<div id="insert"> <!-- insert -->
+    <form method="POST" id="insert">
+        <legend><strong>Add Authors </strong></legend>
+          <fieldset class="fields">
+            <label> First Name</label> 
+            <input type="text" name="fname">
+            <label> Last Name</label> 
+            <input type="text" name="lname">
+      </fieldset>
+          <input class="button" type="submit" name="add" value="Add Authors">
+	</form> 
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="urf-8">
+        <title>Project Step 3 draft</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='app.css') }}">
+    </head>
+    <body>
+        <header>
+            <div class ="container">
+                <nav>
+                    <ul class = "main">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="students.html">Students</a></li>
+                    <li><a href="authors.html">Authors</a></li>
+                    <li><a href="publishers.html">Publishers</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="borrowers.html">Borrow Reports</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+<h1>Borrowers</h1>
+<p>Browse Borrowers Database</p>
+<table>
+    <thead>
+        <tr>
+            <th>Borrowing ID</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Due Amount</th>
+            <th>Book status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in results%}
+        <tr>
+            <td>{{row.borrowing_id}}</td>
+            <td>{{row.student}}</td>
+            <td>{{row.title}}</td>
+            <td>{{row.borrow_date}}</td>
+            <td>{{row.due_date}}</td>
+            <td>{{row.due_amount}}</td>
+            <td>{{row.book_status}}</td>
+            <td><button onclick="location.href='/update_borrower/{{row.borrowing_id}}'" type="button">Edit</button></td>
+            <td><button onclick="location.href='/delete_borrower/{{row.borrowing_id}}'" type="button">Delete</button></td>
+        </tr> 
+        {% endfor %}  
+    </tbody>
+</table>
+
+    <br>
+<div id="insert"> <!-- insert -->
+    <form method="POST" id="insert">
+        <legend><strong>Add Borrowers </strong></legend>
+          <fieldset class="fields">
+            <label> Student ID</label> 
+            <input type="text" name="student">
+            <label> Book ID</label> 
+            <input type="text" name="book">
+            <label> Borrow Date</label> 
+            <input type="date" name="borrow_date"> <br><br>
+            <label> Due Date</label> 
+            <input type="date" name="due_date">
+            <label> Due amount </label>
+            <input type="text" name = "due_amount">
+            <label> Book status</label>
+            <select name='status'>
+                <option value='Returned'> Returned </option>
+                <option value='Borrowed'> Borrowed </option>
+            </select>
+      </fieldset>
+          <input class="button" type="submit" name="add" value="Add Borrowers">
+	</form> 
+</div>
+
+    </body>
+</html>

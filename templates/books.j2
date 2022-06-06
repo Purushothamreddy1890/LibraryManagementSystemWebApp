@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="urf-8">
+        <title>Project Step 3 draft</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='app.css') }}">
+    </head>
+    <body>
+        <header>
+            <div class ="container">
+                <nav>
+                    <ul class = "main">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="students.html">Students</a></li>
+                    <li><a href="authors.html">Authors</a></li>
+                    <li><a href="publishers.html">Publishers</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="borrowers.html">Borrow Reports</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+<h1>Books</h1>
+<p>Browse Books Database</p>
+<table>
+    <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher Name</th>
+            <th>Price</th>   
+            <th>Copies</th>
+            <th>Genre</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in results%}
+        <tr>
+            <td>{{row.book_id}}</td>
+            <td>{{row.title}}</td>
+            <td>{{row.author_name}}</td>
+            <td>{{row.publisher_name}}</td>
+            <td>{{row.price}}</td>
+            <td>{{row.no_of_copy}}</td>
+            <td>{{row.genre}} </td>
+            <td><button onclick="location.href='update_book/{{row.book_id}}'" type="button">Edit</button></td>
+            <td><button onclick="location.href='delete_book/{{row.book_id}}'" type="button">Delete</button></td>
+        </tr> 
+        {% endfor %}       
+    </tbody>
+</table>
+
+    <br>
+<div id="insert"> <!-- insert -->
+    <form method="POST" id="insert">
+        <legend><strong>Add Books </strong></legend>
+          <fieldset class="fields">
+            <label> Title</label> 
+            <input type="text" name="title">
+            <label> Author ID</label> 
+            <input type="text" name="author_id">
+            <label> Publisher ID</label>
+            <input type="text" name = "publisher_id"> <br> <br>
+            <label> Price</label>
+            <input type = "text" name = "price">
+            <label> Copies</label>
+            <input type = "text" name = "copies">
+            <label> Genre</label>
+            <input type = "text" name = "genre">
+      </fieldset>
+          <input class="button" type="submit" name="add" value="Add Books">
+	</form> 
+</div>
+
+</body>
+</html>
